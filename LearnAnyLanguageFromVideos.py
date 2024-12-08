@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtGui import QPalette, QColor, QCursor
 
-class SubtitleBlocker(QMainWindow):
+class LearnAnyLanguageFromVideos(QMainWindow):
     def __init__(self):
         super().__init__()
 
@@ -106,6 +106,6 @@ class SubtitleBlocker(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    blocker = SubtitleBlocker()
+    blocker = LearnAnyLanguageFromVideos()
     blocker.show()
     sys.exit(app.exec_())

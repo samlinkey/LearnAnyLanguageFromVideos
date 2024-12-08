@@ -1,0 +1,19 @@
+此软件可让你通过观看视频学习任何语言，我是说在观看双语视频时遮挡字幕，起到一个 “电子贴纸” 的作用
+
+如何使用：
+
+移动位置： 	点击窗口任意区域并拖动来移动窗口
+更改大小： 	将鼠标移动窗口到右下角，点击窗口并拖动来移动窗口
+隐藏贴纸 ：     按住 ctrl 键隐藏，松开显示
+退出软件： 	ctrl + x 
+
+
+
+This software lets you learn any language by watching videos, well I mean masking subtitles when watching bilingual videos, acting as an "electronic sticker".
+
+How to use:
+
+Move Position:     Click and drag any area of the window to move the window
+Change the size:  Move the mouse over the window to the bottom right corner, click on the window and drag to move the window
+Hide Sticker :       Hold down the Ctrl key to hide, release the display
+Exit the software: Ctrl + X 
