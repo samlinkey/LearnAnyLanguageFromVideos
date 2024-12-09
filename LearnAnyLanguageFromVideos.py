@@ -1,4 +1,5 @@
 import sys
+import keyboard
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDesktopWidget
 from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtGui import QPalette, QColor, QCursor
@@ -27,8 +28,10 @@ class LearnAnyLanguageFromVideos(QMainWindow):
         self.resizing = False  # 是否在调整大小
         self.resize_edge = 10  # 可调整大小的边缘范围
 
-        # 标记是否按下Ctrl键
-        self.ctrl_pressed = False
+        # 添加全局热键监听
+        keyboard.on_press_key("ctrl", self.handle_ctrl_press, suppress=True)
+        keyboard.on_release_key("ctrl", self.handle_ctrl_release, suppress=True)
+        keyboard.add_hotkey('ctrl+x', self.close, suppress=True)
 
     def move_to_bottom_center(self):
         """将窗口移动到屏幕中间靠下的位置"""
@@ -89,20 +92,16 @@ class LearnAnyLanguageFromVideos(QMainWindow):
         new_height = max(global_pos.y() - geometry.y(), 50)  # 最小高度 50
         self.setGeometry(geometry.x(), geometry.y(), new_width, new_height)
 
-    def keyPressEvent(self, event):
-        """检测键盘按键组合 Ctrl + X 来关闭窗口，Ctrl 来改变透明度"""
-        if event.key() == Qt.Key_X and event.modifiers() == Qt.ControlModifier:
-            self.close()  # 按下 Ctrl + X 关闭窗口
-        elif event.key() == Qt.Key_Control:
-            self.ctrl_pressed = True  # 标记 Ctrl 键被按下时
-            self.setWindowOpacity(0)  # 按下 Ctrl 键时，窗口透明度设为 0（完全透明）
+    def handle_ctrl_press(self, _):
+        """处理全局 Ctrl 按键"""
+        self.ctrl_pressed = True
+        self.setWindowOpacity(0)
 
-    def keyReleaseEvent(self, event):
-        """检测 Ctrl 键松开事件，恢复窗口透明度"""
-        if event.key() == Qt.Key_Control:
-            if self.ctrl_pressed:
-                self.setWindowOpacity(1)  # 松开 Ctrl 键时，恢复透明度为 1（完全不透明）
-            self.ctrl_pressed = False  # 释放 Ctrl 键后标记为未按下
+    def handle_ctrl_release(self, _):
+        """处理全局 Ctrl 释放"""
+        if self.ctrl_pressed:
+            self.setWindowOpacity(1)
+        self.ctrl_pressed = False
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
